@@ -116,11 +116,7 @@ public class Consumable extends Item {
     @Override
     public String toString()
     {
-        return String.join(
-            " ",
-            String.format("Nme:%s", this.name),
-            String.format( "Eft:%s", this.effect),
-            String.format( "Use:%d", this.uses));
+        return String.format("  Nme: %s\n  Eft: %s\n  Use: %d\n", this.name, this.effect, this.uses);
 
     }
 }
