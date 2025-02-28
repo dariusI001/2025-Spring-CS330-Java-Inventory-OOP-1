@@ -46,6 +46,14 @@ public class Armour extends Item {
      */
     public Armour()
     {
+        super("", false);
+        this.durability = 0;
+        this.material = "";
+        this.defense = 0;
+        this.modifier = "";
+        this.modiferLevel = 0;
+        this.element =  "";
+
         // Initialize all data members (including those inherited from Item)
     }
 
@@ -57,6 +65,13 @@ public class Armour extends Item {
     public Armour(Armour src)
     {
         // Set and/or copy data members for *this* object based on *src*.
+        super(src.name, src.stackable);
+        this.durability = src.durability;
+        this.defense = src.defense;
+        this.material = src.material;
+        this.modifier = src.modifier;
+        this.modiferLevel = src.modiferLevel;
+        this.element =  src.element;
     }
 
     /**
@@ -190,18 +205,24 @@ public class Armour extends Item {
     public void read(Scanner snr)
     {
         super.name   = snr.next();
-
+        this.material = snr.next();
+        this.durability = snr.nextInt();
+        this.defense = snr.nextInt();
+        this.modifier = snr.next();
+        this.modiferLevel = snr.nextInt();
+        this.element = snr.next();
+        super.stackable = false;
         // Complete this method
+        
     }
-
     /**
      * Clone--i.e., copy--this Armour.
      */
     @Override
-    public Item clone()
+    public Item clone() 
     {
         // Replace the next line
-        return null;
+        return new Armour(this);
     }
 
     /**
@@ -210,10 +231,16 @@ public class Armour extends Item {
     @Override
     public String toString()
     {
-        return "Implement This Function";
+        return String.join(
+            "",
+            String.format("Nme:", this.name),
+            String.format( "Dur:", this.durability),
+            String.format( "Def:", this.defense),
+            String.format( "Mtl:", this.material),
+            String.format( "Mdr:", this.modifier, this.modiferLevel),
+            String.format( "Emt:", this.element));
     }
 }
-
 
 
 

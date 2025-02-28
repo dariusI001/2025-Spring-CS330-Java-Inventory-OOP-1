@@ -1,5 +1,7 @@
 package edu.odu.cs.cs330.items;
 
+import static edu.odu.cs.cs330.items.Inventory.DEFAULT_SIZE;
+
 import java.util.Scanner;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Scanner;
  */
 public class Consumable extends Item {
     /**
-     * The effect "buff" or "debuff" that is received when using this item.
+     * The effect "buff" or "debuff" that is received when using this item. 
      */
     protected String effect;
 
@@ -39,6 +41,11 @@ public class Consumable extends Item {
     public Consumable(Consumable src)
     {
         // Complete this method
+        super(src.name, true);
+        this.effect = src.effect;
+        this.uses = src.uses;;
+        
+
     }
 
     /**
@@ -88,7 +95,9 @@ public class Consumable extends Item {
     public void read(Scanner snr)
     {
         super.name = snr.next();
-
+        this.effect = snr.next();
+        this.uses = snr.nextInt();
+        super.stackable = true;
         // Complete this method
     }
 
@@ -98,7 +107,7 @@ public class Consumable extends Item {
     @Override
     public Item clone()
     {
-        return null;
+        return new Consumable(this);
     }
 
     /**
@@ -107,6 +116,11 @@ public class Consumable extends Item {
     @Override
     public String toString()
     {
-        return "Implement this function";
+        return String.join(
+            " ",
+            String.format("Nme:%s", this.name),
+            String.format( "Eft:%s", this.effect),
+            String.format( "Use:%d", this.uses));
+
     }
 }
